@@ -142,4 +142,5 @@ Acknowledgments
 TensorFlow: https://www.tensorflow.org/
 Matplotlib: https://matplotlib.org/
 
-Note: Initially, I attempted to utilize a custom CNN architecture designed for my master's thesis on object detection. This architecture comprises five convolutional layers with max-pooling applied after each convolutional layer. However, I encountered an error while reading the weight file associated with this custom architecture. To proceed with and complete this assignment, I have opted to use a pre-trained model instead 
+# Note: 
+Initially, I attempted to utilize a custom CNN architecture designed for my master's thesis on object detection. This architecture comprises five convolutional layers with max-pooling applied after each convolutional layer. However, I encountered an error while reading the weight file associated with this custom architecture. To proceed with and complete this assignment, I have opted to use a pre-trained model instead 
