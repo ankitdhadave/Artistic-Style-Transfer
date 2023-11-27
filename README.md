@@ -1,16 +1,15 @@
 # Artistic-Style-Transfer
 Assignment task for Dashtoon campus placement for the post of Research Engineer, Generative AI to generate using style transfer algorithm .  
 Artistic Style Transfer
-Project Overview
+# Project Overview
 This project focuses on creating a deep learning model capable of adapting an existing work to resemble the aesthetic of any art. The model analyzes the artistic style of a selected artwork and applies similar stylistic features to a new, original artwork, creating a piece that seems as though it could have been created by the artist themselves.
 
 Model Architecture
-Neural Network Design:
-
+# Neural Network Design:
 Utilizes the VGG19 model for feature extraction.
 Implements a style transfer algorithm leveraging learned features to stylize input images.
 python
-# Create a custom model that extracts features from intermediate layers
+
 # Import necessary libraries
 import tensorflow as tf
 from tensorflow import keras
@@ -19,13 +18,13 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Check if a GPU is available
+Check if a GPU is available
 if tf.test.gpu_device_name():
     print('GPU found')
 else:
     print("No GPU found. Make sure TensorFlow is configured to use GPU.")
 
-# Load a pre-trained VGG19 model
+Load a pre-trained VGG19 model
 base_model = tf.keras.applications.VGG19(include_top=False, weights='imagenet')
 
 style_layers = ['block1_conv1', 'block1_conv2', 'block2_conv1', 'block3_conv1', 'block3_conv3']
@@ -36,20 +35,20 @@ content_output = base_model.get_layer(content_layer).output
 
 model = models.Model(inputs=base_model.input, outputs=style_outputs + [content_output])
 
-Training
+# Training
 Dataset:
 The model doesn't require traditional training as it's focused on style transfer rather than a classification task.
 Style Transfer Implementation
 Code for Style Transfer:
 
-Defines a function apply_style_transfer that takes content and style images and performs style transfer using VGG19 layers.
+#Defines a function apply_style_transfer that takes content and style images and performs style transfer using VGG19 layers.
 Uses pre-trained VGG19 weights for feature extraction.
 python
-# Define a function to calculate the content loss
+Define a function to calculate the content loss
 def get_content_loss(base_content, target):
     return tf.reduce_mean(tf.square(base_content - target))
 
-# Define a function to calculate the Gram matrix (used for style loss)
+#Define a function to calculate the Gram matrix (used for style loss)
 def gram_matrix(input_tensor):
     channels = int(input_tensor.shape[-1])
     a = tf.reshape(input_tensor, [-1, channels])
@@ -57,13 +56,13 @@ def gram_matrix(input_tensor):
     gram = tf.matmul(a, a, transpose_a=True)
     return gram / tf.cast(n, tf.float32)
 
-# Define a function to calculate the style loss
+#Define a function to calculate the style loss
 def get_style_loss(base_style, gram_target):
     height, width, channels = base_style.get_shape().as_list()
     gram_style = gram_matrix(base_style)
     return tf.reduce_mean(tf.square(gram_style - gram_target))
 
-# Define a function to apply style transfer
+#Define a function to apply style transfer
 def apply_style_transfer(content_image, style_image, num_iterations=200, content_weight=1e6, style_weight=1e-7):
     content_image = tf.keras.preprocessing.image.img_to_array(content_image)
     content_image = tf.image.convert_image_dtype(content_image, dtype=tf.uint8)
