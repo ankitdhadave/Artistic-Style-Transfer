@@ -1,6 +1,6 @@
 # Artistic-Style-Transfer
 Assignment task for Dashtoon campus placement for the post of Research Engineer, Generative AI to generate using style transfer algorithm .  
-Artistic Style Transfer
+#Artistic Style Transfer
 # Project Overview
 This project focuses on creating a deep learning model capable of adapting an existing work to resemble the aesthetic of any art. The model analyzes the artistic style of a selected artwork and applies similar stylistic features to a new, original artwork, creating a piece that seems as though it could have been created by the artist themselves.
 
